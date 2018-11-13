@@ -1,0 +1,21 @@
+{
+  "name": "TestComponent",
+  "content": {
+    "type": "View",
+    "name": "MaineContainer",
+    "children": [
+      {
+        "type": "Text",
+        "source": "teleport-elements-core",
+        "name": "Text",
+        "children": "hello world",
+        "style": {
+          "width": "100%",
+          "height": "100%",
+          "flexDirection": "row",
+          "backgroundColor": "pink"
+        }
+      }
+    ]
+  }
+}

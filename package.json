@@ -1,7 +1,7 @@
 {
-  "name": "parcel-sandbox",
+  "name": "react-component-generator",
   "version": "1.0.0",
-  "description": "Simple Parcel Sandbox",
+  "description": "AST based component code generation for react",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
@@ -15,5 +15,6 @@
   "devDependencies": {
     "@types/@babel": "latest",
     "parcel-bundler": "^1.6.1"
-  }
+  },
+  "keywords": []
 }
