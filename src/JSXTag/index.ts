@@ -2,7 +2,8 @@ import * as t from "@babel/types";
 
 import {
   generateASTDefinitionForJSXTag,
-  addASTAttributeToJSXTag
+  addASTAttributeToJSXTag,
+  addJSXTagStyles
 } from "./utils";
 
 // jsx attribute can be strings, numbers, booleans, objects.
@@ -58,11 +59,19 @@ export default class JSXTag {
     this.addAttributes(attrArray);
   }
 
+  addChild(validJSXChild: t.JSXElement | t.JSXText) {
+    this.node.children.push(validJSXChild);
+  }
+
   addChildJSXTag(jsxTagNode: t.JSXElement) {
     this.node.children.push(jsxTagNode);
   }
 
   addChildJSXText(jsxTagNode: string) {
     this.node.children.push(t.jsxText(jsxTagNode));
+  }
+
+  addInlineStyle(styleObject: { [key: string]: string | number }) {
+    addJSXTagStyles(this.node, t, styleObject);
   }
 }

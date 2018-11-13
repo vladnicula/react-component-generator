@@ -38,3 +38,37 @@ export const addASTAttributeToJSXTag = (node, t, attribute) => {
   );
   node.openingElement.attributes.push(attributeDefinition);
 };
+
+export const addJSXTagStyles = (node, t, styleMap) => {
+  const styleObjectExpression = objectToObjectExpression(t, styleMap);
+  const styleObjectExpressionContainer = t.jsxExpressionContainer(
+    styleObjectExpression
+  );
+
+  const styleJSXAttr = t.jsxAttribute(
+    t.jsxIdentifier("style"),
+    styleObjectExpressionContainer
+  );
+
+  node.openingElement.attributes.push(styleJSXAttr);
+};
+
+export const objectToObjectExpression = (t, objectMap) => {
+  const props = Object.keys(objectMap).reduce((acc, key) => {
+    const keyIdentifier = t.identifier(key);
+    const value = objectMap[key];
+    let computedLiteralValue = null;
+
+    if (typeof value === "string") {
+      computedLiteralValue = t.stringLiteral(value);
+    } else if (typeof value === "number") {
+      computedLiteralValue = t.numericLiteral(value);
+    }
+
+    acc.push(t.objectProperty(keyIdentifier, computedLiteralValue));
+    return acc;
+  }, []);
+
+  const objectExpression = t.objectExpression(props);
+  return objectExpression;
+};
