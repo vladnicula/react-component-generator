@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@babel/generator": "7.1.5",
-    "@babel/types": "7.1.5"
+    "@babel/types": "7.1.5",
+    "@types/babel-types": "7.0.4"
   },
   "devDependencies": {
     "@types/@babel": "latest",

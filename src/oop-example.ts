@@ -4,16 +4,18 @@ import generator from "@babel/generator";
 
 import JSXTag from "./JSXTag";
 
-const spanTag = new JSXTag({
-  jsxIdentifierName: "span"
-});
+const parentTag = new JSXTag(); //default to div
 
-spanTag.addAttributes([
-  { name: "className", value: "test" },
-  { name: "ana", value: "are mere" }
+const childTag = new JSXTag("span");
+
+parentTag.addAttributes([
+  { name: "className", value: "container" },
+  { name: "enabled", value: "true" }
 ]);
 
-const JSXExpressionStatement2 = t.expressionStatement(spanTag.node);
+parentTag.addChildJSXTag(childTag.node);
+
+const JSXExpressionStatement2 = t.expressionStatement(parentTag.node);
 
 const ast2 = {
   type: "Program",
