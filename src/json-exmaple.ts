@@ -1,6 +1,7 @@
 // now a OOP approach
 import * as t from "@babel/types";
 import generator from "@babel/generator";
+import * as prettier from "prettier";
 
 import jsonDoc from "../in/test.json";
 
@@ -33,6 +34,10 @@ const ast2 = {
   body: [JSXExpressionStatement2]
 };
 
-console.log(ast2);
+const oneLinerCode = generator(ast2).code;
 
-console.log(generator(ast2).code);
+console.log("raw", oneLinerCode);
+console.log(
+  "with prettier",
+  prettier.format(oneLinerCode, { semi: false, parser: "babylon" })
+);
